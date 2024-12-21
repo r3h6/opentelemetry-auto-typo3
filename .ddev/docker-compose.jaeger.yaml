@@ -1,0 +1,19 @@
+services:
+  jaeger:
+    image: jaegertracing/all-in-one:latest
+    container_name: ddev-${DDEV_SITENAME}-jaeger
+    labels:
+      com.ddev.site-name: ${DDEV_SITENAME}
+      com.ddev.approot: $DDEV_APPROOT
+    expose:
+      - "16686"
+      - "4317"
+      - "4318"
+      - "14250"
+      - "14268"
+      - "14269"
+      - "9411"
+    environment:
+      - VIRTUAL_HOST=$DDEV_HOSTNAME
+      - HTTP_EXPOSE=16686:16686
+      - HTTPS_EXPOSE=16687:16686

@@ -1,0 +1,25 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+
+  R3H6\Opentelemetry\:
+    resource: '../Classes/*'
+    exclude: '../Classes/Domain/Model/*'
+
+  OpenTelemetry\API\Logs\EventLoggerProviderInterface:
+    factory: ['OpenTelemetry\API\Globals', 'eventLoggerProvider']
+    public: true
+
+  OpenTelemetry\API\Logs\LoggerProviderInterface:
+    factory: ['OpenTelemetry\API\Globals', 'loggerProvider']
+    public: true
+
+  OpenTelemetry\API\Metrics\MeterProviderInterface:
+    factory: ['OpenTelemetry\API\Globals', 'meterProvider']
+    public: true
+
+  OpenTelemetry\API\Trace\TracerProviderInterface:
+    factory: ['OpenTelemetry\API\Globals', 'tracerProvider']
+    public: true

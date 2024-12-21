@@ -1,0 +1,2 @@
+# cat=Instrumentation; type=boolean; label=Log level
+enable_logging_instrumentation=1
