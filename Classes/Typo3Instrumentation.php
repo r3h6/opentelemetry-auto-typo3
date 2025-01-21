@@ -7,7 +7,6 @@ use OpenTelemetry\API\Globals;
 use OpenTelemetry\API\Instrumentation\CachedInstrumentation;
 
 use OpenTelemetry\API\Trace\Span;
-use OpenTelemetry\API\Trace\SpanInterface;
 use OpenTelemetry\API\Trace\SpanKind;
 use OpenTelemetry\Context\Context;
 use OpenTelemetry\SDK\Sdk;
@@ -53,6 +52,9 @@ final class Typo3Instrumentation
         self::rootSpan($instrumentation);
     }
 
+    /**
+     * @see https://github.com/opentelemetry-php/contrib-auto-wordpress/blob/main/src/WordpressInstrumentation.php
+     */
     public static function rootSpan(CachedInstrumentation $instrumentation): void
     {
         hook(
@@ -74,16 +76,15 @@ final class Typo3Instrumentation
                     $parent = Globals::propagator()->extract($request->headers->all());
                     $span = $builder
                         ->setParent($parent)
-                        // ->setAttribute(TraceAttributes::URL_FULL, $request->getUri()->__toString())
+                        ->setAttribute(TraceAttributes::URL_FULL, $request->getUri())
                         ->setAttribute(TraceAttributes::HTTP_REQUEST_METHOD, $request->getMethod())
-                        // ->setAttribute(TraceAttributes::HTTP_REQUEST_BODY_SIZE, $request->getHeaderLine('Content-Length'))
-                        // ->setAttribute(TraceAttributes::URL_SCHEME, $request->getUri()->getScheme())
-                        // ->setAttribute(TraceAttributes::URL_PATH, $request->getUri()->getPath())
-                        // ->setAttribute(TraceAttributes::USER_AGENT_ORIGINAL, $request->getHeaderLine('User-Agent'))
-                        // ->setAttribute(TraceAttributes::SERVER_ADDRESS, $request->getUri()->getHost())
-                        // ->setAttribute(TraceAttributes::SERVER_PORT, $request->getUri()->getPort())
+                        ->setAttribute(TraceAttributes::HTTP_REQUEST_BODY_SIZE, $request->headers->get('Content-Length'))
+                        ->setAttribute(TraceAttributes::URL_SCHEME, $request->getScheme())
+                        ->setAttribute(TraceAttributes::URL_PATH, $request->getPathInfo())
+                        ->setAttribute(TraceAttributes::USER_AGENT_ORIGINAL, $request->headers->get('User-Agent'))
+                        ->setAttribute(TraceAttributes::SERVER_ADDRESS, $request->getHost())
+                        ->setAttribute(TraceAttributes::SERVER_PORT, $request->getPort())
                         ->startSpan();
-                    // $request = $request->withAttribute(SpanInterface::class, $span);
                 } else {
                     $span = $builder->setSpanKind(SpanKind::KIND_INTERNAL)->startSpan();
                 }

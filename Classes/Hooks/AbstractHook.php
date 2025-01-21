@@ -20,7 +20,7 @@ abstract class AbstractHook
 
     abstract protected function instrument(): void;
 
-    final protected function endSpan(?\Throwable $exception): void
+    final protected function endSpan(?\Throwable $exception, array $attributes = []): void
     {
         $scope = Context::storage()->scope();
         if (!$scope) {
@@ -31,7 +31,12 @@ abstract class AbstractHook
         if ($exception) {
             $span->recordException($exception, [TraceAttributes::EXCEPTION_ESCAPED => true]);
             $span->setStatus(StatusCode::STATUS_ERROR, $exception->getMessage());
+        } else {
+            foreach ($attributes as $key => $value) {
+                $span->setAttribute($key, $value);
+            }
         }
+
         $span->end();
     }
 }

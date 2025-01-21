@@ -1,6 +1,6 @@
 /.Build
 /composer.lock
-/.php-cs-fixer.cache
 /var
 /phar-composer
 /config
+*.cache

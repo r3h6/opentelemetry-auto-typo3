@@ -29,8 +29,8 @@ final class ContentObjectHook extends AbstractHook
 
                 Context::storage()->attach($span->storeInContext(Context::getCurrent()));
             },
-            post: function (ContentObjectRenderer $cObj, array $params, ?string $response, ?\Throwable $exception) {
-                $this->endSpan($exception);
+            post: function (ContentObjectRenderer $cObj, array $params, ?string $content, ?\Throwable $exception) {
+                $this->endSpan($exception, ['cObj.content' => $content]);
             }
         );
     }

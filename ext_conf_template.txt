@@ -1,2 +1,2 @@
-# cat=Instrumentation; type=boolean; label=Log level
-enable_logging_instrumentation=1
+# cat=Instrumentation; type=options[auto,debug,info,notice,warning,error,critical,alert,emergency]; label=Log level
+instrumentation_log_level=auto

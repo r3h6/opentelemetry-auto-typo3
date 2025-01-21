@@ -21,7 +21,7 @@ class DoctrineDbalInstrumentation
     public static function register(): void
     {
         $instrumentation = new CachedInstrumentation(
-            'io.opentelemetry.contrib.php.typo3-doctrine'
+            'io.opentelemetry.contrib.php.' . self::NAME,
         );
 
         hook(
