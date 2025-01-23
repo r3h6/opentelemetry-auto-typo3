@@ -14,4 +14,3 @@ if (extension_loaded('opentelemetry') === false) {
 }
 
 Typo3Instrumentation::register();
-DoctrineDbalInstrumentation::register();

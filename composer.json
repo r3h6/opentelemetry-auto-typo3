@@ -17,6 +17,7 @@
         "ergebnis/composer-normalize": "^2.45",
         "monolog/monolog": "^3.8",
         "open-telemetry/opentelemetry-auto-psr14": "^0.0.3",
+        "r3h6/opentelemetry-auto-doctrine-dbal": "dev-main",
         "saschaegerer/phpstan-typo3": "^1.10",
         "typo3/cms-backend": "^12.4 || ^13.4",
         "typo3/cms-filelist": "^12.4 || ^13.4",
@@ -27,7 +28,8 @@
         "typo3/coding-standards": "^0.8.0"
     },
     "suggest": {
-        "open-telemetry/opentelemetry-auto-psr14": "Auto instrumentation for events"
+        "open-telemetry/opentelemetry-auto-psr14": "Auto instrumentation for events",
+        "r3h6/opentelemetry-auto-doctrine-dbal": "Auto instrumentation for database operations"
     },
     "autoload": {
         "psr-4": {
