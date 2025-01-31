@@ -1,7 +1,6 @@
 <?php
 
 use OpenTelemetry\SDK\Sdk;
-use R3H6\Opentelemetry\DoctrineDbalInstrumentation;
 use R3H6\Opentelemetry\Typo3Instrumentation;
 
 if (class_exists(Sdk::class) && Sdk::isInstrumentationDisabled(Typo3Instrumentation::NAME) === true) {

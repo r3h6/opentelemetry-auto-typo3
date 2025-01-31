@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace R3H6\Opentelemetry\Hooks;
 
 use OpenTelemetry\Context\Context;
@@ -24,7 +26,7 @@ final class ContentObjectHook extends AbstractHook
                     ->setAttribute(TraceAttributes::CODE_FILEPATH, $filename)
                     ->setAttribute(TraceAttributes::CODE_LINENO, $lineno)
                     ->setAttribute('cObj.type', $params[0])
-                    ->setAttribute('cObj.key', $params[2])
+                    ->setAttribute('cObj.key', $params[2] ?? '__')
                     ->startSpan();
 
                 Context::storage()->attach($span->storeInContext(Context::getCurrent()));

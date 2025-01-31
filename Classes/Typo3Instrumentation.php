@@ -1,12 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace R3H6\Opentelemetry;
 
 use Composer\InstalledVersions;
 use OpenTelemetry\API\Globals;
 use OpenTelemetry\API\Instrumentation\CachedInstrumentation;
-
-use OpenTelemetry\API\Trace\Span;
 use OpenTelemetry\API\Trace\SpanKind;
 use OpenTelemetry\Context\Context;
 use OpenTelemetry\SDK\Sdk;
@@ -17,7 +17,6 @@ use R3H6\Opentelemetry\Hooks\ContentObjectHook;
 use R3H6\Opentelemetry\Hooks\DataHandlerHook;
 use R3H6\Opentelemetry\Hooks\MiddlewareHook;
 use Symfony\Component\HttpFoundation\Request;
-
 use TYPO3\CMS\Core\Core\Bootstrap;
 use TYPO3\CMS\Core\Core\Environment;
 

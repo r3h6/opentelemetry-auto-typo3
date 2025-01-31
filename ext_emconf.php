@@ -5,7 +5,7 @@ $EM_CONF[$_EXTKEY] = [
     'description' => 'Opentelemetry for TYPO3',
     'constraints' => [
         'depends' => [
-            'typo3' => '13.0.0-13.4.99',
+            'typo3' => '12.0.0-13.4.99',
         ],
     ],
     'autoload' => [

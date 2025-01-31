@@ -11,13 +11,14 @@
         "open-telemetry/exporter-otlp": "^1.0",
         "open-telemetry/sdk": "^1.0",
         "php-http/guzzle7-adapter": "*",
-        "typo3/cms-core": "^12.4"
+        "typo3/cms-core": "^12.4 || ^13.4"
     },
     "require-dev": {
+        "dms/phpunit-arraysubset-asserts": "^0.5.0",
         "ergebnis/composer-normalize": "^2.45",
         "monolog/monolog": "^3.8",
         "open-telemetry/opentelemetry-auto-psr14": "^0.0.3",
-        "r3h6/opentelemetry-auto-doctrine-dbal": "dev-main",
+        "r3h6/opentelemetry-auto-doctrine-dbal": "0.*",
         "saschaegerer/phpstan-typo3": "^1.10",
         "typo3/cms-backend": "^12.4 || ^13.4",
         "typo3/cms-filelist": "^12.4 || ^13.4",
@@ -25,7 +26,8 @@
         "typo3/cms-frontend": "^12.4 || ^13.4",
         "typo3/cms-install": "^12.4 || ^13.4",
         "typo3/cms-lowlevel": "^12.4 || ^13.4",
-        "typo3/coding-standards": "^0.8.0"
+        "typo3/coding-standards": "^0.8.0",
+        "typo3/testing-framework": "^8.0"
     },
     "suggest": {
         "open-telemetry/opentelemetry-auto-psr14": "Auto instrumentation for events",
@@ -38,6 +40,11 @@
         "files": [
             "_register.php"
         ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "R3H6\\Opentelemetry\\Tests\\": "Tests/"
+        }
     },
     "config": {
         "allow-plugins": {
@@ -64,6 +71,7 @@
         "ci:php:lint": "find *.php Classes Configuration Tests -name '*.php' -print0 | xargs -0 -n 1 -P 4 php -l",
         "ci:php:stan": "phpstan --no-progress",
         "fix:composer:normalize": "@composer normalize --no-check-lock",
-        "fix:php:cs": "php-cs-fixer fix"
+        "fix:php:cs": "php-cs-fixer fix",
+		"ci:tests:unit": "phpunit -c .Build/vendor/typo3/testing-framework/Resources/Core/Build/UnitTests.xml Tests/Unit"
     }
 }

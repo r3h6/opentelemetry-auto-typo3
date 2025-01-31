@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace R3H6\Opentelemetry\Hooks;
 
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
